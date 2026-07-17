@@ -126,8 +126,13 @@
 
 ## 配音记录
 
-- 状态：已按确认稿生成并写入成片（v2 加速/更口语）
-- 音色：`zh-CN-XiaoyiNeural`（更活泼口语），rate `+12%`，pitch `+0Hz`
-- 标点略收紧，减少机械停顿
-- 成片约 55s：`refs/locked-A-storyboard/motion/ai-edu-layered-vo.mp4`
+- 状态：v3 — AI 口播改为「人工智能」
+- 音色：`zh-CN-XiaoyiNeural`，rate `+8%`
+- 成片：`refs/locked-A-storyboard/motion/ai-edu-layered-vo.mp4`
 - 同步：`manifests/sync-timeline.json`
+
+
+## 口播读法约定
+
+- 画面可写 **AI**，口播一律念 **「人工智能」**，不要念英文字母 A-I。
+- 其余英文缩写同理：以中文全称或约定读法为准，不按字母念。

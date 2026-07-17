@@ -1,74 +1,83 @@
 [
   {
     "id": "01",
-    "text": "到处都在说AI，大模型风口满天飞。可回到产品里，它到底是什么？",
-    "duration": 6.696,
+    "spoken": "到处都在说人工智能，大模型、风口满天飞。可回到产品里，它到底是什么？",
+    "duration": 7.302,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "b12",
-    "text": "先把最常见的误区划掉。",
-    "duration": 2.712,
+    "spoken": "先把最常见的误区划掉。",
+    "duration": 2.814,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "02",
-    "text": "很多人以为加个对话框就等于做出了AI产品，其实不是。",
-    "duration": 5.76,
+    "spoken": "很多人以为，加个对话框，就等于做出了人工智能产品。其实不是。",
+    "duration": 6.534,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "b23",
-    "text": "那真正该怎么拆？按顺序看结构。",
-    "duration": 3.72,
+    "spoken": "那真正该怎么拆？按顺序看结构。",
+    "duration": 3.894,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "03",
-    "text": "先问清帮谁、解决什么问题。场景清楚了再谈能力，最后才是体验。",
-    "duration": 6.6,
+    "spoken": "先问清：帮谁，解决什么问题。场景清楚了，再谈能力，最后才是体验。",
+    "duration": 7.518,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "b34",
-    "text": "记住，能力不该抢戏。",
-    "duration": 2.568,
+    "spoken": "记住，能力不该抢戏。",
+    "duration": 2.67,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "04",
-    "text": "好的AI产品会把模型能力藏进流程里。用户感到的是事情变轻松了。",
-    "duration": 6.984,
+    "spoken": "好的人工智能产品，会把模型能力藏进流程里。用户感到的，是事情变轻松了。",
+    "duration": 7.638,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "b45",
-    "text": "最后带走一句就够。",
-    "duration": 2.136,
+    "spoken": "最后，带走一句就够。",
+    "duration": 2.55,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   },
   {
     "id": "05",
-    "text": "先有真实问题，再谈模型与功能。这才是做AI产品的起点。",
-    "duration": 6.0,
+    "spoken": "先有真实问题，再谈模型与功能。这才是做人工智能产品的起点。",
+    "duration": 6.558,
     "voice": "zh-CN-XiaoyiNeural",
-    "rate": "+12%",
-    "pitch": "+0Hz"
+    "rate": "+8%",
+    "pitch": "+0Hz",
+    "note": "AI spoken as 人工智能"
   }
 ]
