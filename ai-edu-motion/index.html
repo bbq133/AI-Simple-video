@@ -64,7 +64,7 @@
   </style>
 </head>
 <body>
-  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="74" data-start="0">
+  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="55" data-start="0">
     <div class="paper-noise"></div>
     <div class="deck">
       <section class="scene" id="s1"><div class="card"><img class="card-art" src="assets/keyframes/locked-A-01-hook.png" alt="" /></div></section>
@@ -84,21 +84,21 @@
   <script>
     // Timing locked to manifests/sync-timeline.json (voice-driven)
     const SYNC = {
-      total: 74,
-      fadeIn: 1.05,
-      fadeOut: 0.95,
+      total: 55,
+      fadeIn: 0.9,
+      fadeOut: 0.75,
       scenes: [
-        { id: "#s1", start: 0.15, hold: 9.222, isLast: false },
-        { id: "#s2", start: 15.73, hold: 8.238, isLast: false },
-        { id: "#s3", start: 31.334, hold: 9.486, isLast: false },
-        { id: "#s4", start: 46.794, hold: 9.654, isLast: false },
-        { id: "#s5", start: 62.254, hold: 7.974, isLast: true, lastExtra: 2.0 }
+        { id: "#s1", start: 0.12, hold: 6.846, isLast: false },
+        { id: "#s2", start: 11.778, hold: 5.91, isLast: false },
+        { id: "#s3", start: 23.508, hold: 6.75, isLast: false },
+        { id: "#s4", start: 34.926, hold: 7.134, isLast: false },
+        { id: "#s5", start: 46.296, hold: 6.15, isLast: true, lastExtra: 1.6 }
       ],
       bridges: [
-        { start: 11.372, duration: 4.358, kicker: "01 → 02 纠偏", title: "先把常见误区<span class='hi'>划掉</span>", hint: "下一页：真正的误区长什么样" },
-        { start: 25.968, duration: 5.366, kicker: "02 → 03 拆解", title: "再按顺序拆开<span class='hi'>结构</span>", hint: "下一页：场景 → 能力 → 体验" },
-        { start: 42.82, duration: 3.974, kicker: "03 → 04 体验", title: "能力不该<span class='hi'>抢戏</span>", hint: "下一页：把能力藏进流程" },
-        { start: 58.448, duration: 3.806, kicker: "04 → 05 收束", title: "带走一句<span class='hi'>就够</span>", hint: "下一页：先有真实问题" }
+        { start: 8.616, duration: 3.162, kicker: "01 → 02 纠偏", title: "先把常见误区<span class='hi'>划掉</span>", hint: "下一页：真正的误区长什么样" },
+        { start: 19.338, duration: 4.17, kicker: "02 → 03 拆解", title: "再按顺序拆开<span class='hi'>结构</span>", hint: "下一页：场景 → 能力 → 体验" },
+        { start: 31.908, duration: 3.018, kicker: "03 → 04 体验", title: "能力不该<span class='hi'>抢戏</span>", hint: "下一页：把能力藏进流程" },
+        { start: 43.71, duration: 2.586, kicker: "04 → 05 收束", title: "带走一句<span class='hi'>就够</span>", hint: "下一页：先有真实问题" }
       ]
     };
 

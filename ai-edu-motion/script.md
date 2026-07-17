@@ -126,7 +126,8 @@
 
 ## 配音记录
 
-- 状态：已按确认稿生成并写入成片
-- 音色：`zh-CN-XiaoxiaoNeural`（温柔女声），rate `-12%`，pitch `-3Hz`
-- 成片：`renders/ai-edu-layered-vo.mp4` / `refs/locked-A-storyboard/motion/ai-edu-layered-vo.mp4`
-- 口型节奏：画面停留按 `manifests/sync-timeline.json` 随语音加长
+- 状态：已按确认稿生成并写入成片（v2 加速/更口语）
+- 音色：`zh-CN-XiaoyiNeural`（更活泼口语），rate `+12%`，pitch `+0Hz`
+- 标点略收紧，减少机械停顿
+- 成片约 55s：`refs/locked-A-storyboard/motion/ai-edu-layered-vo.mp4`
+- 同步：`manifests/sync-timeline.json`
