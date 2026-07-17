@@ -38,18 +38,14 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
     }
 
-    .deck {
-      position: absolute;
-      inset: 0;
-    }
+    .deck { position: absolute; inset: 0; }
 
     .scene {
       position: absolute;
       inset: 0;
-      will-change: transform, opacity;
+      will-change: opacity;
     }
 
-    /* Full-frame art: no overlays on top of the keyframe modules */
     .card {
       position: absolute;
       left: 36px;
@@ -74,69 +70,32 @@
       background: #FFFCF7;
     }
 
-    /* Soft mask used only for entrance reveal — never covers settled frame */
-    .reveal-mask {
-      position: absolute;
-      inset: 0;
-      background: #F7F2E8;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    /* Bridge only appears BETWEEN cards; dim behind text, then clears */
+    /* Soft bridge caption — only during fade gap, never covers settled art */
     .bridge-layer {
       position: absolute;
-      inset: 0;
+      left: 80px;
+      right: 80px;
+      bottom: 96px;
       z-index: 60;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       pointer-events: none;
-    }
-
-    .bridge-dim {
-      position: absolute;
-      inset: 0;
-      background: rgba(247, 242, 232, 0.72);
     }
 
     .bridge {
-      position: relative;
-      width: 780px;
-      padding: 36px 40px;
-      border-radius: 28px;
-      background: #FFFCF7;
-      border: 2px solid rgba(40, 40, 40, 0.1);
-      box-shadow: 0 18px 36px rgba(90, 70, 40, 0.16);
-      font-size: 44px;
+      margin: 0 auto;
+      width: fit-content;
+      max-width: 920px;
+      padding: 22px 36px;
+      border-radius: 999px;
+      background: rgba(255, 252, 247, 0.92);
+      border: 2px solid rgba(40, 40, 40, 0.08);
+      box-shadow: 0 10px 24px rgba(90, 70, 40, 0.1);
+      font-size: 36px;
       font-weight: 700;
       text-align: center;
       color: #2A2A2A;
-      line-height: 1.35;
+      line-height: 1.3;
     }
     .bridge .hi { color: #E35D4B; }
-
-    /* Tiny side rail chips — ONLY in left/right gutters outside card art */
-    .rail {
-      position: absolute;
-      top: 120px;
-      bottom: 120px;
-      width: 28px;
-      z-index: 15;
-      pointer-events: none;
-    }
-    .rail.left { left: 4px; }
-    .rail.right { right: 4px; }
-
-    .rail-dot {
-      position: absolute;
-      left: 6px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #E35D4B;
-      opacity: 0.35;
-    }
 
     .progress {
       position: absolute;
@@ -159,57 +118,43 @@
   </style>
 </head>
 <body>
-  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="32" data-start="0">
+  <!--
+    Pacing (40s total):
+    each card: fade in 1.0s → hold readable 5.2s → fade out 0.9s
+    between cards: soft bridge 0.8s while both near black/empty
+  -->
+  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="40" data-start="0">
     <div class="paper-noise"></div>
-
-    <div class="rail left">
-      <div class="rail-dot" id="d1" style="top:8%"></div>
-      <div class="rail-dot" id="d2" style="top:28%"></div>
-      <div class="rail-dot" id="d3" style="top:48%"></div>
-      <div class="rail-dot" id="d4" style="top:68%"></div>
-      <div class="rail-dot" id="d5" style="top:88%"></div>
-    </div>
 
     <div class="deck">
       <section class="scene" id="s1">
         <div class="card">
           <img class="card-art" src="assets/keyframes/locked-A-01-hook.png" alt="" />
-          <div class="reveal-mask" id="m1"></div>
         </div>
       </section>
-
       <section class="scene" id="s2">
         <div class="card">
           <img class="card-art" src="assets/keyframes/locked-A-02-myth.png" alt="" />
-          <div class="reveal-mask" id="m2"></div>
         </div>
       </section>
-
       <section class="scene" id="s3">
         <div class="card">
           <img class="card-art" src="assets/keyframes/locked-A-03-structure.png" alt="" />
-          <div class="reveal-mask" id="m3"></div>
         </div>
       </section>
-
       <section class="scene" id="s4">
         <div class="card">
           <img class="card-art" src="assets/keyframes/locked-A-04-experience.png" alt="" />
-          <div class="reveal-mask" id="m4"></div>
         </div>
       </section>
-
       <section class="scene" id="s5">
         <div class="card">
           <img class="card-art" src="assets/keyframes/locked-A-05-takeaway.png" alt="" />
-          <div class="reveal-mask" id="m5"></div>
         </div>
       </section>
     </div>
 
-    <!-- Bridges sit above everything only during transitions -->
     <div class="bridge-layer" id="bridge">
-      <div class="bridge-dim" id="bridgeDim"></div>
       <div class="bridge" id="bridgeText">桥接</div>
     </div>
 
@@ -219,7 +164,6 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     const scenes = ["#s1", "#s2", "#s3", "#s4", "#s5"];
-    const masks = ["#m1", "#m2", "#m3", "#m4", "#m5"];
     const bridges = [
       "先把常见误区<span class='hi'>划掉</span>",
       "再按顺序拆开结构",
@@ -227,100 +171,83 @@
       "带走一句就够"
     ];
 
-    gsap.set(scenes.slice(1), { autoAlpha: 0, x: 140, scale: 0.96 });
-    gsap.set("#s1", { autoAlpha: 1, x: 0, scale: 1 });
-    gsap.set(masks, { yPercent: 0 });
+    // All hidden initially except we'll fade s1 in
+    gsap.set(scenes, { autoAlpha: 0 });
     gsap.set("#bridge", { autoAlpha: 0 });
-    gsap.set("#bridgeDim", { autoAlpha: 1 });
     gsap.set("#bar", { width: "0%" });
-    gsap.set(["#d1","#d2","#d3","#d4","#d5"], { scale: 0.6, background: "#C9C2B4" });
 
-    function markStep(n, at) {
-      const ids = ["#d1","#d2","#d3","#d4","#d5"];
-      tl.to(ids[n], { background: "#E35D4B", scale: 1.15, duration: 0.25, ease: "back.out(2)" }, at);
-      if (n > 0) tl.to(ids[n - 1], { background: "#7BC4A0", scale: 1, duration: 0.2 }, at);
-    }
+    const FADE_IN = 1.05;
+    const HOLD = 5.4;
+    const FADE_OUT = 0.95;
+    const BRIDGE = 0.85;
+    const TOTAL = 40;
 
-    function revealCard(mask, at) {
-      // wipe upward so modules are uncovered, not covered
-      tl.fromTo(mask,
-        { yPercent: 0 },
-        { yPercent: -105, duration: 0.7, ease: "power2.inOut" },
-        at
+    tl.to("#bar", { width: "100%", duration: TOTAL, ease: "none" }, 0);
+
+    /**
+     * Show a scene fully, hold for reading, then soft fade out.
+     * Returns the timeline time when the scene has finished fading out.
+     */
+    function playScene(id, startAt, isLast = false) {
+      // fade in from empty
+      tl.fromTo(id,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: FADE_IN, ease: "power1.inOut" },
+        startAt
       );
+      const holdEnd = startAt + FADE_IN + HOLD;
+      if (!isLast) {
+        tl.to(id, {
+          autoAlpha: 0,
+          duration: FADE_OUT,
+          ease: "power1.inOut"
+        }, holdEnd);
+        return holdEnd + FADE_OUT;
+      }
+      // last card: longer settle, stay visible
+      tl.to(id, {
+        autoAlpha: 1,
+        duration: 0.01
+      }, holdEnd);
+      return holdEnd + 2.2;
     }
 
-    function showBridge(text, at) {
-      tl.call(() => { document.querySelector("#bridgeText").innerHTML = text; }, null, at);
+    function playBridge(text, at) {
+      tl.call(() => {
+        document.querySelector("#bridgeText").innerHTML = text;
+      }, null, at);
+      // bridge appears in the empty beat between fades
       tl.fromTo("#bridge",
         { autoAlpha: 0 },
-        { autoAlpha: 1, duration: 0.22, ease: "power1.out" },
+        { autoAlpha: 1, duration: 0.35, ease: "power1.out" },
         at
       );
-      tl.fromTo("#bridgeText",
-        { y: 28, scale: 0.92 },
-        { y: 0, scale: 1, duration: 0.32, ease: "power2.out" },
-        at
-      );
-      tl.to("#bridge", { autoAlpha: 0, duration: 0.22, ease: "power1.in" }, at + 0.62);
+      tl.to("#bridge", {
+        autoAlpha: 0,
+        duration: 0.35,
+        ease: "power1.in"
+      }, at + BRIDGE - 0.35);
     }
 
-    function swapCard(from, to, at) {
-      tl.to(from, {
-        autoAlpha: 0, x: -100, scale: 0.95, duration: 0.5, ease: "power2.inOut"
-      }, at);
-      tl.fromTo(to,
-        { autoAlpha: 0, x: 120, scale: 0.96 },
-        { autoAlpha: 1, x: 0, scale: 1, duration: 0.55, ease: "power3.out" },
-        at + 0.06
-      );
-    }
+    // Timeline choreography: display complete → fade out → bridge → fade in next
+    let t = 0.15;
+    t = playScene("#s1", t, false);          // done fading out
+    playBridge(bridges[0], t - 0.15);        // overlap slightly with end of fade-out
+    t += BRIDGE;
 
-    // progress
-    tl.to("#bar", { width: "100%", duration: 32, ease: "none" }, 0);
+    t = playScene("#s2", t, false);
+    playBridge(bridges[1], t - 0.15);
+    t += BRIDGE;
 
-    // ===== 01 开场：完整露出画面模块 =====
-    markStep(0, 0.05);
-    revealCard("#m1", 0.15);
-    tl.to("#s1 .card", { y: -8, duration: 1.1, ease: "sine.inOut" }, 1.4);
-    tl.to("#s1 .card", { y: 0, duration: 1.1, ease: "sine.inOut" }, 2.5);
-    // hold for reading — no chips on art
+    t = playScene("#s3", t, false);
+    playBridge(bridges[2], t - 0.15);
+    t += BRIDGE;
 
-    // 01 → 02
-    showBridge(bridges[0], 5.45);
-    swapCard("#s1", "#s2", 6.15);
-    markStep(1, 6.2);
-    revealCard("#m2", 6.35);
-    tl.to("#s2 .card", { scale: 1.015, duration: 0.9, yoyo: true, repeat: 1, ease: "sine.inOut" }, 7.4);
+    t = playScene("#s4", t, false);
+    playBridge(bridges[3], t - 0.15);
+    t += BRIDGE;
 
-    // 02 → 03
-    showBridge(bridges[1], 11.55);
-    swapCard("#s2", "#s3", 12.25);
-    markStep(2, 12.3);
-    revealCard("#m3", 12.4);
-    // emphasize structure readability with a gentle push-in
-    tl.fromTo("#s3 .card-art",
-      { scale: 1.04 },
-      { scale: 1, duration: 1.2, ease: "power2.out" },
-      12.5
-    );
-
-    // 03 → 04
-    showBridge(bridges[2], 18.0);
-    swapCard("#s3", "#s4", 18.7);
-    markStep(3, 18.75);
-    revealCard("#m4", 18.85);
-    tl.to("#s4 .card", { y: -6, duration: 1.0, ease: "sine.inOut" }, 20.0);
-    tl.to("#s4 .card", { y: 0, duration: 1.0, ease: "sine.inOut" }, 21.0);
-
-    // 04 → 05
-    showBridge(bridges[3], 24.35);
-    swapCard("#s4", "#s5", 25.05);
-    markStep(4, 25.1);
-    revealCard("#m5", 25.2);
-    tl.to("#s5 .card", { scale: 1.02, duration: 1.3, ease: "sine.inOut" }, 26.4);
-    tl.to("#s5 .card", { scale: 1.0, duration: 1.3, ease: "sine.inOut" }, 27.7);
-    // final hold — art fully visible
+    playScene("#s5", t, true);
 
     window.__timelines = window.__timelines || {};
     window.__timelines["main"] = tl;
