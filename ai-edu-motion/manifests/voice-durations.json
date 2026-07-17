@@ -1,0 +1,74 @@
+[
+  {
+    "id": "01",
+    "text": "到处都在说 AI，大模型、风口满天飞。可回到产品里，它到底是什么？",
+    "duration": 8.722,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "b12",
+    "text": "先把最常见的误区，划掉。",
+    "duration": 3.658,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "02",
+    "text": "很多人以为，加个对话框，就等于做出了 AI 产品。其实不是。",
+    "duration": 7.738,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "b23",
+    "text": "那真正该怎么拆？按顺序看结构。",
+    "duration": 4.666,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "03",
+    "text": "先问清：帮谁，解决什么问题。场景清楚了，再谈能力，最后才是体验。",
+    "duration": 8.986,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "b34",
+    "text": "记住：能力不该抢戏。",
+    "duration": 3.274,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "04",
+    "text": "好的 AI 产品，会把模型能力藏进流程里。用户感到的，是事情变轻松了。",
+    "duration": 9.154,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "b45",
+    "text": "最后，带走一句就够。",
+    "duration": 3.106,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  },
+  {
+    "id": "05",
+    "text": "先有真实问题，再谈模型与功能。这才是做 AI 产品的起点。",
+    "duration": 7.474,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "-12%",
+    "pitch": "-3Hz"
+  }
+]

@@ -10,306 +10,140 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet" />
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 1080px;
-      height: 1920px;
-      overflow: hidden;
-      background: #F7F2E8;
-      font-family: "Noto Sans SC", sans-serif;
+      margin: 0; padding: 0; width: 1080px; height: 1920px; overflow: hidden;
+      background: #F7F2E8; font-family: "Noto Sans SC", sans-serif;
     }
-
     #main-composition {
-      position: relative;
-      width: 1080px;
-      height: 1920px;
-      overflow: hidden;
+      position: relative; width: 1080px; height: 1920px; overflow: hidden;
       background:
         radial-gradient(ellipse at 50% 12%, rgba(190, 230, 210, 0.28), transparent 50%),
         linear-gradient(180deg, #FBF8F1 0%, #F3EDE2 100%);
     }
-
     .paper-noise {
-      position: absolute;
-      inset: 0;
-      opacity: 0.07;
-      pointer-events: none;
-      z-index: 80;
+      position: absolute; inset: 0; opacity: 0.07; pointer-events: none; z-index: 80;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
     }
-
     .deck { position: absolute; inset: 0; }
-
-    .scene {
-      position: absolute;
-      inset: 0;
-      will-change: opacity;
-    }
-
+    .scene { position: absolute; inset: 0; will-change: opacity; }
     .card {
-      position: absolute;
-      left: 36px;
-      right: 36px;
-      top: 36px;
-      bottom: 72px;
-      border-radius: 28px;
-      overflow: hidden;
-      background: #FFFCF7;
-      box-shadow:
-        0 16px 36px rgba(90, 70, 40, 0.12),
-        0 2px 0 rgba(255, 255, 255, 0.65) inset;
+      position: absolute; left: 36px; right: 36px; top: 36px; bottom: 72px;
+      border-radius: 28px; overflow: hidden; background: #FFFCF7;
+      box-shadow: 0 16px 36px rgba(90, 70, 40, 0.12), 0 2px 0 rgba(255,255,255,0.65) inset;
     }
-
     .card-art {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      background: #FFFCF7;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; object-position: center center; background: #FFFCF7;
     }
-
-    /* Transition title card — center stage, clear hierarchy */
     .bridge-layer {
-      position: absolute;
-      inset: 0;
-      z-index: 60;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      padding: 0 72px;
+      position: absolute; inset: 0; z-index: 60;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      pointer-events: none; padding: 0 72px;
     }
-
-    .bridge-dim {
-      position: absolute;
-      inset: 0;
-      background: rgba(247, 242, 232, 0.88);
-    }
-
+    .bridge-dim { position: absolute; inset: 0; background: rgba(247, 242, 232, 0.88); }
     .bridge-kicker {
-      position: relative;
-      margin-bottom: 28px;
-      padding: 12px 28px;
-      border-radius: 999px;
-      background: #EEF8F2;
-      border: 2px solid rgba(90, 170, 130, 0.35);
-      font-size: 32px;
-      font-weight: 700;
-      color: #3D7A5C;
-      letter-spacing: 2px;
+      position: relative; margin-bottom: 28px; padding: 12px 28px; border-radius: 999px;
+      background: #EEF8F2; border: 2px solid rgba(90, 170, 130, 0.35);
+      font-size: 32px; font-weight: 700; color: #3D7A5C; letter-spacing: 2px;
     }
-
     .bridge {
-      position: relative;
-      width: 100%;
-      max-width: 860px;
-      padding: 48px 44px;
-      border-radius: 32px;
-      background: #FFFCF7;
-      border: 3px solid rgba(40, 40, 40, 0.1);
+      position: relative; width: 100%; max-width: 860px; padding: 48px 44px; border-radius: 32px;
+      background: #FFFCF7; border: 3px solid rgba(40, 40, 40, 0.1);
       box-shadow: 0 22px 48px rgba(90, 70, 40, 0.14);
-      font-size: 64px;
-      font-weight: 900;
-      text-align: center;
-      color: #222;
-      line-height: 1.35;
+      font-size: 64px; font-weight: 900; text-align: center; color: #222; line-height: 1.35;
     }
-    .bridge .hi {
-      color: #E35D4B;
-      border-bottom: 8px solid rgba(227, 93, 75, 0.35);
-      padding-bottom: 2px;
-    }
-
-    .bridge-hint {
-      position: relative;
-      margin-top: 36px;
-      font-size: 30px;
-      font-weight: 500;
-      color: rgba(42, 42, 42, 0.55);
-      letter-spacing: 1px;
-    }
-
+    .bridge .hi { color: #E35D4B; border-bottom: 8px solid rgba(227, 93, 75, 0.35); padding-bottom: 2px; }
+    .bridge-hint { position: relative; margin-top: 36px; font-size: 30px; font-weight: 500; color: rgba(42,42,42,0.55); }
     .progress {
-      position: absolute;
-      left: 80px;
-      right: 80px;
-      bottom: 28px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(40, 40, 40, 0.08);
-      overflow: hidden;
-      z-index: 70;
+      position: absolute; left: 80px; right: 80px; bottom: 28px; height: 8px;
+      border-radius: 999px; background: rgba(40,40,40,0.08); overflow: hidden; z-index: 70;
     }
     .progress > i {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #7BC4A0, #E35D4B);
-      border-radius: inherit;
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(90deg, #7BC4A0, #E35D4B); border-radius: inherit;
     }
   </style>
 </head>
 <body>
-  <!--
-    Pacing (40s total):
-    each card: fade in 1.0s → hold readable 5.2s → fade out 0.9s
-    between cards: soft bridge 0.8s while both near black/empty
-  -->
-  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="44" data-start="0">
+  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="74" data-start="0">
     <div class="paper-noise"></div>
-
     <div class="deck">
-      <section class="scene" id="s1">
-        <div class="card">
-          <img class="card-art" src="assets/keyframes/locked-A-01-hook.png" alt="" />
-        </div>
-      </section>
-      <section class="scene" id="s2">
-        <div class="card">
-          <img class="card-art" src="assets/keyframes/locked-A-02-myth.png" alt="" />
-        </div>
-      </section>
-      <section class="scene" id="s3">
-        <div class="card">
-          <img class="card-art" src="assets/keyframes/locked-A-03-structure.png" alt="" />
-        </div>
-      </section>
-      <section class="scene" id="s4">
-        <div class="card">
-          <img class="card-art" src="assets/keyframes/locked-A-04-experience.png" alt="" />
-        </div>
-      </section>
-      <section class="scene" id="s5">
-        <div class="card">
-          <img class="card-art" src="assets/keyframes/locked-A-05-takeaway.png" alt="" />
-        </div>
-      </section>
+      <section class="scene" id="s1"><div class="card"><img class="card-art" src="assets/keyframes/locked-A-01-hook.png" alt="" /></div></section>
+      <section class="scene" id="s2"><div class="card"><img class="card-art" src="assets/keyframes/locked-A-02-myth.png" alt="" /></div></section>
+      <section class="scene" id="s3"><div class="card"><img class="card-art" src="assets/keyframes/locked-A-03-structure.png" alt="" /></div></section>
+      <section class="scene" id="s4"><div class="card"><img class="card-art" src="assets/keyframes/locked-A-04-experience.png" alt="" /></div></section>
+      <section class="scene" id="s5"><div class="card"><img class="card-art" src="assets/keyframes/locked-A-05-takeaway.png" alt="" /></div></section>
     </div>
-
     <div class="bridge-layer" id="bridge">
       <div class="bridge-dim"></div>
       <div class="bridge-kicker" id="bridgeKicker">下一站</div>
       <div class="bridge" id="bridgeText">桥接</div>
       <div class="bridge-hint" id="bridgeHint">看完再往下</div>
     </div>
-
     <div class="progress"><i id="bar"></i></div>
   </div>
-
   <script>
-    const tl = gsap.timeline({ paused: true });
-    const scenes = ["#s1", "#s2", "#s3", "#s4", "#s5"];
-    // 转场中插页：小标签说明阶段，大标题讲重点，底部弱提示不抢戏
-    const bridges = [
-      {
-        kicker: "01 → 02 纠偏",
-        title: "先把常见误区<span class='hi'>划掉</span>",
-        hint: "下一页：真正的误区长什么样"
-      },
-      {
-        kicker: "02 → 03 拆解",
-        title: "再按顺序拆开<span class='hi'>结构</span>",
-        hint: "下一页：场景 → 能力 → 体验"
-      },
-      {
-        kicker: "03 → 04 体验",
-        title: "能力不该<span class='hi'>抢戏</span>",
-        hint: "下一页：把能力藏进流程"
-      },
-      {
-        kicker: "04 → 05 收束",
-        title: "带走一句<span class='hi'>就够</span>",
-        hint: "下一页：先有真实问题"
-      }
-    ];
+    // Timing locked to manifests/sync-timeline.json (voice-driven)
+    const SYNC = {
+      total: 74,
+      fadeIn: 1.05,
+      fadeOut: 0.95,
+      scenes: [
+        { id: "#s1", start: 0.15, hold: 9.222, isLast: false },
+        { id: "#s2", start: 15.73, hold: 8.238, isLast: false },
+        { id: "#s3", start: 31.334, hold: 9.486, isLast: false },
+        { id: "#s4", start: 46.794, hold: 9.654, isLast: false },
+        { id: "#s5", start: 62.254, hold: 7.974, isLast: true, lastExtra: 2.0 }
+      ],
+      bridges: [
+        { start: 11.372, duration: 4.358, kicker: "01 → 02 纠偏", title: "先把常见误区<span class='hi'>划掉</span>", hint: "下一页：真正的误区长什么样" },
+        { start: 25.968, duration: 5.366, kicker: "02 → 03 拆解", title: "再按顺序拆开<span class='hi'>结构</span>", hint: "下一页：场景 → 能力 → 体验" },
+        { start: 42.82, duration: 3.974, kicker: "03 → 04 体验", title: "能力不该<span class='hi'>抢戏</span>", hint: "下一页：把能力藏进流程" },
+        { start: 58.448, duration: 3.806, kicker: "04 → 05 收束", title: "带走一句<span class='hi'>就够</span>", hint: "下一页：先有真实问题" }
+      ]
+    };
 
-    // All hidden initially except we'll fade s1 in
+    const tl = gsap.timeline({ paused: true });
+    const scenes = SYNC.scenes.map(s => s.id);
     gsap.set(scenes, { autoAlpha: 0 });
     gsap.set("#bridge", { autoAlpha: 0 });
     gsap.set("#bar", { width: "0%" });
+    tl.to("#bar", { width: "100%", duration: SYNC.total, ease: "none" }, 0);
 
-    const FADE_IN = 1.05;
-    const HOLD = 5.4;
-    const FADE_OUT = 0.95;
-    const BRIDGE = 1.6;
-    const TOTAL = 44;
-
-    tl.to("#bar", { width: "100%", duration: TOTAL, ease: "none" }, 0);
-
-    /**
-     * Show a scene fully, hold for reading, then soft fade out.
-     * Returns the timeline time when the scene has finished fading out.
-     */
-    function playScene(id, startAt, isLast = false) {
-      // fade in from empty
-      tl.fromTo(id,
+    SYNC.scenes.forEach((s) => {
+      tl.fromTo(s.id,
         { autoAlpha: 0 },
-        { autoAlpha: 1, duration: FADE_IN, ease: "power1.inOut" },
-        startAt
+        { autoAlpha: 1, duration: SYNC.fadeIn, ease: "power1.inOut" },
+        s.start
       );
-      const holdEnd = startAt + FADE_IN + HOLD;
-      if (!isLast) {
-        tl.to(id, {
-          autoAlpha: 0,
-          duration: FADE_OUT,
-          ease: "power1.inOut"
-        }, holdEnd);
-        return holdEnd + FADE_OUT;
+      const holdEnd = s.start + SYNC.fadeIn + s.hold;
+      if (!s.isLast) {
+        tl.to(s.id, { autoAlpha: 0, duration: SYNC.fadeOut, ease: "power1.inOut" }, holdEnd);
+      } else {
+        // keep visible through end
+        tl.to(s.id, { autoAlpha: 1, duration: 0.01 }, holdEnd + (s.lastExtra || 0));
       }
-      // last card: longer settle, stay visible
-      tl.to(id, {
-        autoAlpha: 1,
-        duration: 0.01
-      }, holdEnd);
-      return holdEnd + 2.2;
-    }
+    });
 
-    function playBridge(item, at) {
+    SYNC.bridges.forEach((b) => {
       tl.call(() => {
-        document.querySelector("#bridgeKicker").textContent = item.kicker;
-        document.querySelector("#bridgeText").innerHTML = item.title;
-        document.querySelector("#bridgeHint").textContent = item.hint;
-      }, null, at);
-      // full-screen transition title: fade in → hold → fade out
+        document.querySelector("#bridgeKicker").textContent = b.kicker;
+        document.querySelector("#bridgeText").innerHTML = b.title;
+        document.querySelector("#bridgeHint").textContent = b.hint;
+      }, null, b.start);
       tl.fromTo("#bridge",
         { autoAlpha: 0 },
         { autoAlpha: 1, duration: 0.4, ease: "power1.out" },
-        at
+        b.start
       );
       tl.fromTo("#bridgeText",
-        { y: 24, scale: 0.96 },
-        { y: 0, scale: 1, duration: 0.45, ease: "power2.out" },
-        at + 0.05
+        { y: 20, scale: 0.97 },
+        { y: 0, scale: 1, duration: 0.4, ease: "power2.out" },
+        b.start + 0.05
       );
       tl.to("#bridge", {
-        autoAlpha: 0,
-        duration: 0.4,
-        ease: "power1.in"
-      }, at + BRIDGE - 0.4);
-    }
-
-    // Timeline: 显示完 → 淡出 → 居中转场标题 → 淡入下一页
-    let t = 0.15;
-    t = playScene("#s1", t, false);
-    playBridge(bridges[0], t);
-    t += BRIDGE;
-
-    t = playScene("#s2", t, false);
-    playBridge(bridges[1], t);
-    t += BRIDGE;
-
-    t = playScene("#s3", t, false);
-    playBridge(bridges[2], t);
-    t += BRIDGE;
-
-    t = playScene("#s4", t, false);
-    playBridge(bridges[3], t);
-    t += BRIDGE;
-
-    playScene("#s5", t, true);
+        autoAlpha: 0, duration: 0.4, ease: "power1.in"
+      }, b.start + b.duration - 0.4);
+    });
 
     window.__timelines = window.__timelines || {};
     window.__timelines["main"] = tl;

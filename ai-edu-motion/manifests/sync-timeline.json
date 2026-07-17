@@ -1,0 +1,99 @@
+{
+  "total": 73.578,
+  "fade_in": 1.05,
+  "fade_out": 0.95,
+  "items": [
+    {
+      "id": "01",
+      "type": "scene",
+      "start": 0.15,
+      "fade_in": 1.05,
+      "hold": 9.222,
+      "fade_out": 0.95,
+      "duration": 11.222,
+      "vo_at": 0.6,
+      "vo_dur": 8.722,
+      "is_last": false
+    },
+    {
+      "id": "b12",
+      "type": "bridge",
+      "start": 11.372,
+      "duration": 4.358,
+      "vo_at": 11.622,
+      "vo_dur": 3.658
+    },
+    {
+      "id": "02",
+      "type": "scene",
+      "start": 15.73,
+      "fade_in": 1.05,
+      "hold": 8.238,
+      "fade_out": 0.95,
+      "duration": 10.238,
+      "vo_at": 16.18,
+      "vo_dur": 7.738,
+      "is_last": false
+    },
+    {
+      "id": "b23",
+      "type": "bridge",
+      "start": 25.968,
+      "duration": 5.366,
+      "vo_at": 26.218,
+      "vo_dur": 4.666
+    },
+    {
+      "id": "03",
+      "type": "scene",
+      "start": 31.334,
+      "fade_in": 1.05,
+      "hold": 9.486,
+      "fade_out": 0.95,
+      "duration": 11.486,
+      "vo_at": 31.784,
+      "vo_dur": 8.986,
+      "is_last": false
+    },
+    {
+      "id": "b34",
+      "type": "bridge",
+      "start": 42.82,
+      "duration": 3.974,
+      "vo_at": 43.07,
+      "vo_dur": 3.274
+    },
+    {
+      "id": "04",
+      "type": "scene",
+      "start": 46.794,
+      "fade_in": 1.05,
+      "hold": 9.654,
+      "fade_out": 0.95,
+      "duration": 11.654,
+      "vo_at": 47.244,
+      "vo_dur": 9.154,
+      "is_last": false
+    },
+    {
+      "id": "b45",
+      "type": "bridge",
+      "start": 58.448,
+      "duration": 3.806,
+      "vo_at": 58.698,
+      "vo_dur": 3.106
+    },
+    {
+      "id": "05",
+      "type": "scene",
+      "start": 62.254,
+      "fade_in": 1.05,
+      "hold": 7.974,
+      "fade_out": 0,
+      "duration": 11.024,
+      "vo_at": 62.704,
+      "vo_dur": 7.474,
+      "is_last": true
+    }
+  ]
+}

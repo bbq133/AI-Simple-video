@@ -1,4 +1,4 @@
-# AI 产品科普 · 旁白脚本（待确认）
+# AI 产品科普 · 旁白脚本（已确认并配音）
 
 画风：A 清新剪纸简笔 · 竖版  
 成片节奏：每卡淡入 → 停留讲解 → 淡出 → 转场中插页 → 下一卡  
@@ -122,3 +122,11 @@
 4. **声音偏好**（确认后再生）：女声温柔科普 / 男声沉稳讲解 / 你提供参考音色
 
 确认前我不会生成语音，也不会写入成片。
+
+
+## 配音记录
+
+- 状态：已按确认稿生成并写入成片
+- 音色：`zh-CN-XiaoxiaoNeural`（温柔女声），rate `-12%`，pitch `-3Hz`
+- 成片：`renders/ai-edu-layered-vo.mp4` / `refs/locked-A-storyboard/motion/ai-edu-layered-vo.mp4`
+- 口型节奏：画面停留按 `manifests/sync-timeline.json` 随语音加长
