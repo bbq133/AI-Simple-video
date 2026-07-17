@@ -13,3 +13,7 @@ renders/
 *.m4a
 *.mp4
 *.mov
+
+# hyperframes local
+ai-edu-motion/node_modules/
+ai-edu-motion/.hyperframes/
