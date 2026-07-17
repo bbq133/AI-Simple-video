@@ -30,3 +30,10 @@ cd ai-edu-motion
 npx hyperframes@0.7.60 render . -o renders/ai-edu-layered.mp4 \
   --resolution portrait --fps 30 --workers 1 --low-memory-mode
 ```
+
+## v2 遮挡修复
+
+- 去掉叠在关键帧上的纸片 chip / 旁白条 / 红叉章（会挡住画面内小模块）
+- 关键帧改为 `object-fit: contain` 完整露出
+- 分层感改用：揭幕 wipe + 卡片滑入 + 仅切场时的桥接层
+- 进度点放在左右极窄边轨，不压画面
