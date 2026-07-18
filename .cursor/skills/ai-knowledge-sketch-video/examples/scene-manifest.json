@@ -1,0 +1,60 @@
+{
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "language": "zh-CN"
+  },
+  "style": "fresh-paper-cut-sketch",
+  "scene": {
+    "id": "01",
+    "role": "hook",
+    "spoken": "到处都在说人工智能，大模型、风口满天飞。可回到产品里，它到底是什么？",
+    "displaySummary": "到处都在说 AI，可它到底是什么？",
+    "components": [
+      {
+        "id": "label",
+        "display": "01 / 开场",
+        "cueSeconds": 0.15,
+        "entrance": "paper-settle"
+      },
+      {
+        "id": "character",
+        "display": "round-head-character + question-mark",
+        "cueSeconds": 0.55,
+        "entrance": "paper-settle"
+      },
+      {
+        "id": "ai",
+        "display": "AI",
+        "spoken": "人工智能",
+        "cueSeconds": 1.35,
+        "entrance": "paper-settle"
+      },
+      {
+        "id": "model",
+        "display": "大模型",
+        "cueSeconds": 2.9,
+        "entrance": "paper-settle"
+      },
+      {
+        "id": "trend",
+        "display": "风口",
+        "cueSeconds": 3.9,
+        "entrance": "paper-settle"
+      },
+      {
+        "id": "summary",
+        "display": "到处都在说 AI，可它到底是什么？",
+        "cueSeconds": 5.1,
+        "entrance": "fade-rise"
+      }
+    ],
+    "composition": {
+      "readingPath": "label -> character -> keywords -> summary",
+      "settledFrameFill": "balanced",
+      "meaninglessBlankSpaceAllowed": false,
+      "minimumEdgeMargin": 48
+    }
+  }
+}

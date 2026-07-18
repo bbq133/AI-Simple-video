@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="zh" data-resolution="portrait">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 产品科普 · 组件随口播逐步出现</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0; padding: 0; width: 1080px; height: 1920px; overflow: hidden;
+      background: #F7F2E8; font-family: "Noto Sans SC", sans-serif;
+    }
+    #main-composition {
+      position: relative; width: 1080px; height: 1920px; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 10%, rgba(190,230,210,.35), transparent 52%),
+        linear-gradient(180deg, #FBF8F1 0%, #F1EBE0 100%);
+    }
+    .noise {
+      position: absolute; inset: 0; opacity: .06; pointer-events: none; z-index: 90;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+    .plants {
+      position: absolute; left: 0; right: 0; bottom: 80px; height: 220px; z-index: 2;
+      background:
+        radial-gradient(ellipse 120px 80px at 12% 70%, rgba(140,190,150,.35), transparent 70%),
+        radial-gradient(ellipse 160px 90px at 88% 75%, rgba(140,190,150,.3), transparent 70%),
+        radial-gradient(ellipse 100px 60px at 50% 90%, rgba(140,190,150,.2), transparent 70%);
+    }
+    .scene { position: absolute; inset: 0; }
+    .stage {
+      position: absolute; left: 56px; right: 56px; top: 72px; bottom: 96px;
+      border-radius: 36px; background: rgba(255,252,247,.72);
+      box-shadow: 0 18px 40px rgba(90,70,40,.08);
+      overflow: hidden;
+    }
+
+    /* paper chips */
+    .chip {
+      position: absolute;
+      background: #FFFCF7;
+      border: 2px solid rgba(40,40,40,.12);
+      box-shadow: 0 12px 24px rgba(90,70,40,.14);
+      border-radius: 22px;
+    }
+    .tag {
+      left: 48px; top: 48px; padding: 16px 28px;
+      font-size: 36px; font-weight: 800; color: #222;
+    }
+    .tag .n { color: #E35D4B; }
+    .bubble {
+      padding: 28px 40px; font-size: 58px; font-weight: 900;
+      border-radius: 28px;
+    }
+    .bubble.coral { color: #E35D4B; }
+    .bubble.ink { color: #222; }
+    .caption {
+      left: 48px; right: 48px; bottom: 220px; padding: 36px 28px;
+      text-align: center; font-size: 46px; font-weight: 800; line-height: 1.4; color: #222;
+    }
+    .caption .hi { color: #E35D4B; }
+
+    .figure {
+      position: absolute; left: 50%; top: 50%; width: 300px; height: 430px;
+      margin-left: -150px; margin-top: -215px;
+    }
+    .figure svg { width: 100%; height: 100%; overflow: visible; }
+    .qmark {
+      position: absolute; left: 50%; top: 26%; margin-left: 92px;
+      font-size: 88px; font-weight: 900; color: #222;
+    }
+
+    .dialog {
+      position: absolute; left: 90px; top: 300px; width: 650px; height: 620px;
+      border-radius: 36px; padding: 36px;
+    }
+    .dialog .lines {
+      height: 100%; border-radius: 20px;
+      background: repeating-linear-gradient(
+        180deg, rgba(40,40,40,.08) 0 10px, transparent 10px 36px
+      );
+    }
+    .stamp {
+      position: absolute; left: 310px; top: 500px; width: 220px; height: 220px;
+      border: 14px solid #E35D4B; border-radius: 50%;
+    }
+    .stamp:before, .stamp:after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 110px; height: 14px; background: #E35D4B; border-radius: 8px;
+    }
+    .stamp:before { transform: translate(-50%,-50%) rotate(45deg); }
+    .stamp:after { transform: translate(-50%,-50%) rotate(-45deg); }
+
+    .mod {
+      position: absolute; left: 100px; right: 100px; height: 180px;
+      display: flex; align-items: center; padding: 0 40px;
+      font-size: 60px; font-weight: 900; color: #222;
+    }
+    .mod .idx { color: #E35D4B; margin-right: 18px; }
+    .mod1 { top: 300px; }
+    .mod2 { top: 540px; }
+    .mod3 { top: 780px; }
+
+    .box {
+      position: absolute; left: 90px; top: 290px; width: 600px; height: 700px;
+      border-radius: 28px; padding: 28px;
+    }
+    .gear {
+      position: absolute; width: 96px; height: 96px; border-radius: 50%;
+      border: 10px solid rgba(40,40,40,.25);
+    }
+    .flow {
+      position: absolute; right: 70px; top: 720px; padding: 32px 42px;
+      font-size: 50px; font-weight: 900; color: #3D7A5C; background: #EEF8F2;
+    }
+
+    .note {
+      position: absolute; right: 70px; top: 420px; width: 500px; padding: 44px 38px;
+      font-size: 42px; font-weight: 700; line-height: 1.75; color: #222;
+    }
+    .note li { list-style: none; margin: 10px 0; }
+    .note li:before { content: "✓ "; color: #E35D4B; font-weight: 900; }
+
+    .walker {
+      position: absolute; left: 120px; top: 500px; width: 270px; height: 390px;
+    }
+    .walker svg { width: 100%; height: 100%; }
+
+    /* bridge */
+    .bridge-layer {
+      position: absolute; inset: 0; z-index: 70;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 0 72px; pointer-events: none;
+    }
+    .bridge-dim { position: absolute; inset: 0; background: rgba(247,242,232,.9); }
+    .bridge-kicker {
+      position: relative; margin-bottom: 24px; padding: 12px 28px; border-radius: 999px;
+      background: #EEF8F2; border: 2px solid rgba(90,170,130,.35);
+      font-size: 32px; font-weight: 700; color: #3D7A5C;
+    }
+    .bridge {
+      position: relative; width: 100%; max-width: 860px; padding: 48px 44px; border-radius: 32px;
+      background: #FFFCF7; border: 3px solid rgba(40,40,40,.1);
+      box-shadow: 0 22px 48px rgba(90,70,40,.14);
+      font-size: 60px; font-weight: 900; text-align: center; color: #222; line-height: 1.35;
+    }
+    .bridge .hi { color: #E35D4B; border-bottom: 8px solid rgba(227,93,75,.35); }
+    .bridge-hint { position: relative; margin-top: 28px; font-size: 30px; color: rgba(42,42,42,.55); font-weight: 500; }
+
+    .progress {
+      position: absolute; left: 80px; right: 80px; bottom: 28px; height: 8px;
+      border-radius: 999px; background: rgba(40,40,40,.08); overflow: hidden; z-index: 80;
+    }
+    .progress > i {
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(90deg,#7BC4A0,#E35D4B); border-radius: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="60" data-start="0">
+    <div class="noise"></div>
+    <div class="plants"></div>
+
+    <!-- ===== Scene 01 ===== -->
+    <section class="scene" id="s1">
+      <div class="stage">
+        <div class="chip tag" id="s1-tag"><span class="n">01</span> / 开场</div>
+        <div class="figure" id="s1-fig">
+          <svg viewBox="0 0 100 140" fill="none" stroke="#222" stroke-width="4" stroke-linecap="round">
+            <circle cx="50" cy="28" r="16"/>
+            <path d="M50 44v46"/>
+            <path d="M50 60 L28 78"/>
+            <path d="M50 60 L78 70"/>
+            <path d="M50 90 L34 122"/>
+            <path d="M50 90 L68 122"/>
+          </svg>
+        </div>
+        <div class="qmark" id="s1-q">?</div>
+        <div class="chip bubble coral" id="s1-ai" style="left:65px;top:360px;">AI</div>
+        <div class="chip bubble coral" id="s1-model" style="right:60px;top:280px;">大模型</div>
+        <div class="chip bubble ink" id="s1-wind" style="right:75px;top:650px;">风口</div>
+        <div class="chip caption" id="s1-cap">到处都在说 <span class="hi">AI</span>，<br/>可它到底是什么？</div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 02 ===== -->
+    <section class="scene" id="s2">
+      <div class="stage">
+        <div class="chip tag" id="s2-tag"><span class="n">02</span> / 误区</div>
+        <div class="chip dialog" id="s2-dialog"><div class="lines"></div></div>
+        <div class="stamp" id="s2-x"></div>
+        <div class="chip bubble ink" id="s2-people" style="right:70px;top:900px;font-size:44px;">≠ 产品</div>
+        <div class="chip caption" id="s2-cap">加个对话框 <span class="hi">≠</span> 做出了 AI 产品</div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 03 ===== -->
+    <section class="scene" id="s3">
+      <div class="stage">
+        <div class="chip tag" id="s3-tag"><span class="n">03</span> / 结构</div>
+        <div class="chip mod mod1" id="s3-m1"><span class="idx">①</span>场景</div>
+        <div class="chip mod mod2" id="s3-m2"><span class="idx">②</span>能力</div>
+        <div class="chip mod mod3" id="s3-m3"><span class="idx">③</span>体验</div>
+        <div class="chip caption" id="s3-cap">先问清：<span class="hi">帮谁？</span>解决什么？</div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 04 ===== -->
+    <section class="scene" id="s4">
+      <div class="stage">
+        <div class="chip tag" id="s4-tag"><span class="n">04</span> / 体验</div>
+        <div class="chip box" id="s4-box">
+          <div class="gear" style="left:55px;top:60px;"></div>
+          <div class="gear" style="left:235px;top:150px;"></div>
+          <div class="gear" style="left:90px;top:335px;"></div>
+          <div class="gear" style="left:330px;top:430px;"></div>
+        </div>
+        <div class="chip flow" id="s4-flow">藏进流程里</div>
+        <div class="chip caption" id="s4-cap">好的 AI 产品，让能力藏在<span class="hi">流程</span>里</div>
+      </div>
+    </section>
+
+    <!-- ===== Scene 05 ===== -->
+    <section class="scene" id="s5">
+      <div class="stage">
+        <div class="chip tag" id="s5-tag"><span class="n">05</span> / 记住</div>
+        <div class="walker" id="s5-fig">
+          <svg viewBox="0 0 100 140" fill="none" stroke="#222" stroke-width="4" stroke-linecap="round">
+            <circle cx="50" cy="28" r="16"/>
+            <path d="M50 44v46"/>
+            <path d="M50 60 L30 82"/>
+            <path d="M50 60 L78 56"/>
+            <path d="M50 90 L36 124"/>
+            <path d="M50 90 L74 118"/>
+          </svg>
+        </div>
+        <div class="chip note" id="s5-note">
+          <li>找到真实场景</li>
+          <li>明确核心需求</li>
+          <li>验证可行价值</li>
+        </div>
+        <div class="chip caption" id="s5-cap">先有真实问题，再谈模型</div>
+      </div>
+    </section>
+
+    <div class="bridge-layer" id="bridge">
+      <div class="bridge-dim"></div>
+      <div class="bridge-kicker" id="bridgeKicker">下一站</div>
+      <div class="bridge" id="bridgeText">桥接</div>
+      <div class="bridge-hint" id="bridgeHint">看完再往下</div>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
+  </div>
+
+  <script>
+    /**
+     * Component-level reveals synced to narration beats.
+     * Timing locked to manifests/sync-timeline.json (voice-driven).
+     */
+    const SYNC = {
+      total: 60,
+      fadeIn: 0.35,
+      fadeOut: 0.55,
+      scenes: [
+        { id: "#s1", start: 0.12, hold: 7.502, isLast: false },
+        { id: "#s2", start: 12.536, hold: 6.734, isLast: false },
+        { id: "#s3", start: 25.264, hold: 7.718, isLast: false },
+        { id: "#s4", start: 37.752, hold: 7.838, isLast: false },
+        { id: "#s5", start: 50.24, hold: 6.758, isLast: true, lastExtra: 1.6 }
+      ],
+      bridges: [
+        { start: 9.272, duration: 3.264, kicker: "01 → 02 纠偏", title: "先把常见误区<span class='hi'>划掉</span>", hint: "下一页：真正的误区长什么样" },
+        { start: 20.92, duration: 4.344, kicker: "02 → 03 拆解", title: "再按顺序拆开<span class='hi'>结构</span>", hint: "下一页：场景 → 能力 → 体验" },
+        { start: 34.632, duration: 3.12, kicker: "03 → 04 体验", title: "能力不该<span class='hi'>抢戏</span>", hint: "下一页：把能力藏进流程" },
+        { start: 47.24, duration: 3.0, kicker: "04 → 05 收束", title: "带走一句<span class='hi'>就够</span>", hint: "下一页：先有真实问题" }
+      ],
+      // relative to each scene.start — progressive focus with VO
+      beats: {
+        s1: [
+          { sel: "#s1-tag", at: 0.15 },
+          { sel: "#s1-fig", at: 0.55 },
+          { sel: "#s1-q", at: 0.85 },
+          { sel: "#s1-ai", at: 1.35 },      // 到处都在说人工智能
+          { sel: "#s1-model", at: 2.9 },   // 大模型
+          { sel: "#s1-wind", at: 3.9 },    // 风口
+          { sel: "#s1-cap", at: 5.1 }      // 可它到底是什么
+        ],
+        s2: [
+          { sel: "#s2-tag", at: 0.15 },
+          { sel: "#s2-dialog", at: 0.7 },  // 加个对话框
+          { sel: "#s2-x", at: 2.4 },       // 其实不是 / 划掉
+          { sel: "#s2-people", at: 3.5 },
+          { sel: "#s2-cap", at: 4.4 }
+        ],
+        s3: [
+          { sel: "#s3-tag", at: 0.15 },
+          { sel: "#s3-m1", at: 1.0 },      // 帮谁 / 场景
+          { sel: "#s3-m2", at: 3.2 },      // 能力
+          { sel: "#s3-m3", at: 4.6 },      // 体验
+          { sel: "#s3-cap", at: 5.8 }
+        ],
+        s4: [
+          { sel: "#s4-tag", at: 0.15 },
+          { sel: "#s4-box", at: 0.8 },     // 模型能力
+          { sel: "#s4-flow", at: 3.2 },    // 藏进流程
+          { sel: "#s4-cap", at: 5.0 }
+        ],
+        s5: [
+          { sel: "#s5-tag", at: 0.15 },
+          { sel: "#s5-fig", at: 0.7 },
+          { sel: "#s5-note", at: 2.0 },
+          { sel: "#s5-cap", at: 4.2 }
+        ]
+      }
+    };
+
+    const tl = gsap.timeline({ paused: true });
+    const allScenes = SYNC.scenes.map(s => s.id);
+    const allBits = [
+      "#s1-tag","#s1-fig","#s1-q","#s1-ai","#s1-model","#s1-wind","#s1-cap",
+      "#s2-tag","#s2-dialog","#s2-x","#s2-people","#s2-cap",
+      "#s3-tag","#s3-m1","#s3-m2","#s3-m3","#s3-cap",
+      "#s4-tag","#s4-box","#s4-flow","#s4-cap",
+      "#s5-tag","#s5-fig","#s5-note","#s5-cap"
+    ];
+
+    gsap.set(allScenes, { autoAlpha: 0 });
+    gsap.set(allBits, { autoAlpha: 0, y: 28, scale: 0.92 });
+    gsap.set("#bridge", { autoAlpha: 0 });
+    gsap.set("#bar", { width: "0%" });
+    tl.to("#bar", { width: "100%", duration: SYNC.total, ease: "none" }, 0);
+
+    function popIn(sel, at) {
+      tl.fromTo(sel,
+        { autoAlpha: 0, y: 34, scale: 0.88, rotate: -2 },
+        { autoAlpha: 1, y: 0, scale: 1, rotate: 0, duration: 0.45, ease: "back.out(1.5)" },
+        at
+      );
+    }
+
+    SYNC.scenes.forEach((s, idx) => {
+      const key = `s${idx + 1}`;
+      // scene container soft fade (stage only, chips still hidden)
+      tl.fromTo(s.id,
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: SYNC.fadeIn, ease: "power1.out" },
+        s.start
+      );
+
+      // progressive components
+      (SYNC.beats[key] || []).forEach(b => popIn(b.sel, s.start + b.at));
+
+      const holdEnd = s.start + 0.9 + s.hold; // keep previous hold math approx
+      if (!s.isLast) {
+        // fade out chips then scene
+        const bits = (SYNC.beats[key] || []).map(b => b.sel);
+        tl.to(bits, { autoAlpha: 0, y: -16, duration: 0.35, stagger: 0.03, ease: "power1.in" }, holdEnd - 0.15);
+        tl.to(s.id, { autoAlpha: 0, duration: SYNC.fadeOut, ease: "power1.inOut" }, holdEnd);
+      }
+    });
+
+    SYNC.bridges.forEach((b) => {
+      tl.call(() => {
+        document.querySelector("#bridgeKicker").textContent = b.kicker;
+        document.querySelector("#bridgeText").innerHTML = b.title;
+        document.querySelector("#bridgeHint").textContent = b.hint;
+      }, null, b.start);
+      tl.fromTo("#bridge", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35, ease: "power1.out" }, b.start);
+      tl.fromTo("#bridgeText", { y: 18, scale: 0.96 }, { y: 0, scale: 1, duration: 0.4, ease: "power2.out" }, b.start + 0.05);
+      tl.to("#bridge", { autoAlpha: 0, duration: 0.35, ease: "power1.in" }, b.start + b.duration - 0.35);
+    });
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  </script>
+</body>
+</html>
