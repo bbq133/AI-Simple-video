@@ -50,29 +50,29 @@
     }
     .tag .n { color: #E35D4B; }
     .bubble {
-      padding: 22px 34px; font-size: 48px; font-weight: 900;
+      padding: 28px 40px; font-size: 58px; font-weight: 900;
       border-radius: 28px;
     }
     .bubble.coral { color: #E35D4B; }
     .bubble.ink { color: #222; }
     .caption {
-      left: 48px; right: 48px; bottom: 56px; padding: 36px 28px;
+      left: 48px; right: 48px; bottom: 220px; padding: 36px 28px;
       text-align: center; font-size: 46px; font-weight: 800; line-height: 1.4; color: #222;
     }
     .caption .hi { color: #E35D4B; }
 
     .figure {
-      position: absolute; left: 50%; top: 42%; width: 220px; height: 320px;
-      margin-left: -110px; margin-top: -160px;
+      position: absolute; left: 50%; top: 50%; width: 300px; height: 430px;
+      margin-left: -150px; margin-top: -215px;
     }
     .figure svg { width: 100%; height: 100%; overflow: visible; }
     .qmark {
-      position: absolute; left: 50%; top: 22%; margin-left: 70px;
-      font-size: 72px; font-weight: 900; color: #222;
+      position: absolute; left: 50%; top: 26%; margin-left: 92px;
+      font-size: 88px; font-weight: 900; color: #222;
     }
 
     .dialog {
-      position: absolute; left: 90px; top: 280px; width: 520px; height: 420px;
+      position: absolute; left: 90px; top: 300px; width: 650px; height: 620px;
       border-radius: 36px; padding: 36px;
     }
     .dialog .lines {
@@ -82,7 +82,7 @@
       );
     }
     .stamp {
-      position: absolute; left: 220px; top: 380px; width: 180px; height: 180px;
+      position: absolute; left: 310px; top: 500px; width: 220px; height: 220px;
       border: 14px solid #E35D4B; border-radius: 50%;
     }
     .stamp:before, .stamp:after {
@@ -93,37 +93,37 @@
     .stamp:after { transform: translate(-50%,-50%) rotate(-45deg); }
 
     .mod {
-      position: absolute; left: 120px; right: 120px; height: 140px;
+      position: absolute; left: 100px; right: 100px; height: 180px;
       display: flex; align-items: center; padding: 0 40px;
-      font-size: 52px; font-weight: 900; color: #222;
+      font-size: 60px; font-weight: 900; color: #222;
     }
     .mod .idx { color: #E35D4B; margin-right: 18px; }
-    .mod1 { top: 280px; }
-    .mod2 { top: 460px; }
-    .mod3 { top: 640px; }
+    .mod1 { top: 300px; }
+    .mod2 { top: 540px; }
+    .mod3 { top: 780px; }
 
     .box {
-      position: absolute; left: 120px; top: 260px; width: 420px; height: 480px;
+      position: absolute; left: 90px; top: 290px; width: 600px; height: 700px;
       border-radius: 28px; padding: 28px;
     }
     .gear {
-      position: absolute; width: 72px; height: 72px; border-radius: 50%;
-      border: 8px solid rgba(40,40,40,.25);
+      position: absolute; width: 96px; height: 96px; border-radius: 50%;
+      border: 10px solid rgba(40,40,40,.25);
     }
     .flow {
-      position: absolute; right: 100px; top: 420px; padding: 28px 36px;
-      font-size: 44px; font-weight: 900; color: #3D7A5C; background: #EEF8F2;
+      position: absolute; right: 70px; top: 720px; padding: 32px 42px;
+      font-size: 50px; font-weight: 900; color: #3D7A5C; background: #EEF8F2;
     }
 
     .note {
-      position: absolute; right: 90px; top: 300px; width: 420px; padding: 36px 32px;
-      font-size: 36px; font-weight: 700; line-height: 1.7; color: #222;
+      position: absolute; right: 70px; top: 420px; width: 500px; padding: 44px 38px;
+      font-size: 42px; font-weight: 700; line-height: 1.75; color: #222;
     }
     .note li { list-style: none; margin: 10px 0; }
     .note li:before { content: "✓ "; color: #E35D4B; font-weight: 900; }
 
     .walker {
-      position: absolute; left: 160px; top: 420px; width: 180px; height: 260px;
+      position: absolute; left: 120px; top: 500px; width: 270px; height: 390px;
     }
     .walker svg { width: 100%; height: 100%; }
 
@@ -178,9 +178,9 @@
           </svg>
         </div>
         <div class="qmark" id="s1-q">?</div>
-        <div class="chip bubble coral" id="s1-ai" style="left:80px;top:300px;">AI</div>
-        <div class="chip bubble coral" id="s1-model" style="right:90px;top:240px;">大模型</div>
-        <div class="chip bubble ink" id="s1-wind" style="right:110px;top:520px;">风口</div>
+        <div class="chip bubble coral" id="s1-ai" style="left:65px;top:360px;">AI</div>
+        <div class="chip bubble coral" id="s1-model" style="right:60px;top:280px;">大模型</div>
+        <div class="chip bubble ink" id="s1-wind" style="right:75px;top:650px;">风口</div>
         <div class="chip caption" id="s1-cap">到处都在说 <span class="hi">AI</span>，<br/>可它到底是什么？</div>
       </div>
     </section>
@@ -191,7 +191,7 @@
         <div class="chip tag" id="s2-tag"><span class="n">02</span> / 误区</div>
         <div class="chip dialog" id="s2-dialog"><div class="lines"></div></div>
         <div class="stamp" id="s2-x"></div>
-        <div class="chip bubble ink" id="s2-people" style="right:90px;top:720px;font-size:36px;">≠ 产品</div>
+        <div class="chip bubble ink" id="s2-people" style="right:70px;top:900px;font-size:44px;">≠ 产品</div>
         <div class="chip caption" id="s2-cap">加个对话框 <span class="hi">≠</span> 做出了 AI 产品</div>
       </div>
     </section>
@@ -212,10 +212,10 @@
       <div class="stage">
         <div class="chip tag" id="s4-tag"><span class="n">04</span> / 体验</div>
         <div class="chip box" id="s4-box">
-          <div class="gear" style="left:40px;top:40px;"></div>
-          <div class="gear" style="left:140px;top:120px;"></div>
-          <div class="gear" style="left:70px;top:220px;"></div>
-          <div class="gear" style="left:200px;top:280px;"></div>
+          <div class="gear" style="left:55px;top:60px;"></div>
+          <div class="gear" style="left:235px;top:150px;"></div>
+          <div class="gear" style="left:90px;top:335px;"></div>
+          <div class="gear" style="left:330px;top:430px;"></div>
         </div>
         <div class="chip flow" id="s4-flow">藏进流程里</div>
         <div class="chip caption" id="s4-cap">好的 AI 产品，让能力藏在<span class="hi">流程</span>里</div>
