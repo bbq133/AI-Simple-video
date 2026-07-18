@@ -8,6 +8,9 @@ Read this file before every production run. Add reusable user feedback here afte
 2. Warm ivory + pale mint + charcoal + restrained coral is the locked default palette.
 3. Keep the result attractive and light, but not childish or overly decorative.
 4. Use 9:16 for this short-form video workflow.
+5. Lock one complete component design system before generating a series.
+6. Do not mix character proportions, line widths, radii, shadows, number styles, or title hierarchy between systems.
+7. Every design system must define characters, symbols, icons, numbers, level cards, titles, summary cards, spacing, and motion behavior.
 
 ## Composition
 

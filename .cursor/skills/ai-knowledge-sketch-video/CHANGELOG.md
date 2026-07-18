@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 — 2026-07-18
+
+- Add three complete component systems: Mint Paper, Apricot Journal, and Mist Blueprint.
+- Define exact tokens for color, typography, spacing, character proportions, icons, numbers, level cards, titles, summaries, and motion.
+- Require one system lock per video and prohibit cross-system component mixing.
+- Add visual component boards and compressed previews.
+
 ## 1.0.0 — 2026-07-18
 
 Initial workflow distilled from iterative production feedback:

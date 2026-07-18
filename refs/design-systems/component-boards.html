@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1080,height=1920" />
+  <title>AI 知识视频组件规范板</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; }
+    body {
+      --bg:#FBF8F1; --paper:#FFFCF7; --ink:#242525; --muted:#6E706D;
+      --soft:#EEF8F2; --support:#72B894; --accent:#E35D4B;
+      --border:rgba(36,37,37,.12); --radius:22px; --line:4px;
+      background: var(--bg); color: var(--ink); font-family:"Noto Sans SC",sans-serif;
+    }
+    body.B {
+      --bg:#FFF7EA; --paper:#FFFDF8; --ink:#30312E; --muted:#766D62;
+      --soft:#FCE4D0; --support:#A9BDA6; --accent:#D96E55;
+      --border:rgba(48,49,46,.1); --radius:18px; --line:5px;
+    }
+    body.C {
+      --bg:#F3F7F6; --paper:#FFFFFF; --ink:#24323A; --muted:#8A969A;
+      --soft:#E4F0F2; --support:#6198A4; --accent:#DD6654;
+      --border:#C9D7D8; --radius:16px; --line:4px;
+    }
+    .board { position:relative; width:1080px; height:1920px; padding:64px; overflow:hidden; }
+    .grain {
+      position:absolute; inset:0; pointer-events:none; opacity:.04;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    body.C .grain {
+      opacity:.16;
+      background-image:linear-gradient(#DCE7E6 1px,transparent 1px),linear-gradient(90deg,#DCE7E6 1px,transparent 1px);
+      background-size:48px 48px;
+    }
+    header { position:relative; display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:34px; }
+    .eyebrow { font-size:26px; color:var(--support); font-weight:800; letter-spacing:2px; }
+    h1 { margin:8px 0 0; font-size:62px; line-height:1.15; font-weight:900; }
+    h1 em { color:var(--accent); font-style:normal; }
+    .version { padding:10px 18px; border-radius:999px; background:var(--soft); color:var(--support); font-size:24px; font-weight:800; }
+    .section-title { margin:0 0 18px; font-size:28px; font-weight:900; display:flex; align-items:center; gap:12px; }
+    .section-title:before { content:""; width:10px; height:28px; border-radius:8px; background:var(--accent); }
+    .grid { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .panel {
+      background:var(--paper); border:2px solid var(--border); border-radius:28px;
+      padding:26px; box-shadow:0 10px 22px rgba(70,58,42,.09);
+    }
+    body.B .panel:nth-child(odd) { transform:rotate(-.35deg); }
+    body.B .panel:nth-child(even) { transform:rotate(.25deg); }
+    body.C .panel { border-radius:16px; box-shadow:0 8px 20px rgba(36,50,58,.08); }
+    .palette { display:flex; gap:12px; }
+    .swatch { flex:1; }
+    .color { height:64px; border-radius:14px; border:1px solid rgba(0,0,0,.06); }
+    .hex { margin-top:7px; font-size:18px; font-weight:700; text-align:center; color:var(--muted); }
+    .type-sample .hero { font-size:50px; font-weight:900; line-height:1.2; }
+    .type-sample .module { font-size:36px; font-weight:800; margin-top:14px; }
+    .type-sample .body { font-size:26px; font-weight:500; color:var(--muted); margin-top:8px; }
+    .characters { display:flex; justify-content:space-around; align-items:flex-end; height:210px; }
+    .person { width:120px; height:180px; }
+    .person svg { width:100%; height:100%; fill:none; stroke:var(--ink); stroke-width:var(--line); stroke-linecap:round; stroke-linejoin:round; }
+    body.B .person:nth-child(2) { transform:rotate(2deg); }
+    .pose-label { text-align:center; font-size:19px; color:var(--muted); margin-top:-8px; }
+    .chips { display:flex; flex-wrap:wrap; gap:14px; }
+    .chip {
+      background:var(--paper); border:2px solid var(--border); border-radius:var(--radius);
+      padding:16px 24px; font-size:28px; font-weight:800; box-shadow:0 7px 14px rgba(70,58,42,.09);
+    }
+    .chip.accent { color:var(--accent); }
+    .chip.soft { background:var(--soft); color:var(--support); }
+    body.B .chip:nth-child(2) { transform:rotate(-2deg); }
+    body.C .chip { box-shadow:none; }
+    .icons { display:flex; justify-content:space-between; align-items:center; }
+    .icon { width:82px; height:82px; border-radius:18px; display:grid; place-items:center; background:var(--soft); }
+    .icon svg { width:52px; height:52px; fill:none; stroke:var(--ink); stroke-width:var(--line); stroke-linecap:round; stroke-linejoin:round; }
+    .icon.error svg { stroke:var(--accent); }
+    .levels { display:grid; gap:14px; }
+    .level {
+      height:76px; border-radius:var(--radius); border:2px solid var(--border);
+      display:flex; align-items:center; gap:18px; padding:0 22px; background:var(--paper);
+      box-shadow:0 7px 14px rgba(70,58,42,.08); font-size:28px; font-weight:800;
+    }
+    .num {
+      width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+      color:var(--accent); background:var(--soft); font-size:23px; font-weight:900;
+    }
+    body.C .num { border-radius:8px; }
+    .titles .kicker { display:inline-block; padding:8px 16px; border-radius:999px; background:var(--soft); color:var(--support); font-size:22px; font-weight:800; }
+    .titles .focus { margin-top:14px; font-size:42px; line-height:1.2; font-weight:900; }
+    .titles .focus span { color:var(--accent); border-bottom:6px solid color-mix(in srgb,var(--accent) 35%,transparent); }
+    .titles .hint { margin-top:13px; font-size:22px; color:var(--muted); }
+    .summary {
+      margin-top:18px; padding:18px 22px; border-radius:var(--radius); border:2px solid var(--border);
+      background:var(--paper); font-size:28px; font-weight:800; text-align:center;
+    }
+    .motion { display:flex; align-items:center; justify-content:space-between; gap:7px; }
+    .beat { flex:1; text-align:center; }
+    .mini {
+      margin:auto; width:56px; height:56px; border-radius:14px; background:var(--paper);
+      border:2px solid var(--border); display:grid; place-items:center; color:var(--accent); font-weight:900;
+    }
+    .arrow { color:var(--support); font-size:26px; }
+    .beat p { margin:8px 0 0; font-size:17px; color:var(--muted); font-weight:700; }
+    .rules { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .rule { display:flex; gap:10px; align-items:flex-start; font-size:21px; line-height:1.4; color:var(--muted); }
+    .rule b { color:var(--support); }
+    footer {
+      position:relative; margin-top:24px; padding:22px 26px; border-radius:22px;
+      background:var(--ink); color:var(--paper); display:flex; justify-content:space-between;
+      font-size:21px; font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <div class="board">
+    <div class="grain"></div>
+    <header>
+      <div>
+        <div class="eyebrow" id="eyebrow">SYSTEM A · GENERAL AI EDUCATION</div>
+        <h1 id="name">薄荷<em>剪纸</em></h1>
+      </div>
+      <div class="version">COMPONENTS v1.0</div>
+    </header>
+
+    <div class="grid">
+      <section class="panel">
+        <h2 class="section-title">颜色系统</h2>
+        <div class="palette">
+          <div class="swatch"><div class="color" style="background:var(--bg)"></div><div class="hex" id="h1">#FBF8F1</div></div>
+          <div class="swatch"><div class="color" style="background:var(--ink)"></div><div class="hex" id="h2">#242525</div></div>
+          <div class="swatch"><div class="color" style="background:var(--support)"></div><div class="hex" id="h3">#72B894</div></div>
+          <div class="swatch"><div class="color" style="background:var(--accent)"></div><div class="hex" id="h4">#E35D4B</div></div>
+        </div>
+      </section>
+
+      <section class="panel type-sample">
+        <h2 class="section-title">文字层级</h2>
+        <div class="hero">人工智能是什么？</div>
+        <div class="module">场景 → 能力 → 体验</div>
+        <div class="body">一屏最多三个层级 · 重点只强调一处</div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">人物语言</h2>
+        <div class="characters">
+          <div><div class="person"><svg viewBox="0 0 100 150"><circle cx="50" cy="28" r="17"/><path d="M50 45v52M50 61L25 78M50 61l25 14M50 97l-18 36M50 97l20 34"/><path d="M25 78l-6-8"/></svg></div><div class="pose-label">思考</div></div>
+          <div><div class="person"><svg viewBox="0 0 100 150"><circle cx="50" cy="28" r="17"/><path d="M50 45v52M50 61L23 87M50 61l36-18M50 97l-18 36M50 97l20 34"/><path d="M86 43l-8-3"/></svg></div><div class="pose-label">指引</div></div>
+          <div><div class="person"><svg viewBox="0 0 100 150"><circle cx="50" cy="28" r="17"/><path d="M50 45v52M50 61L27 72M50 61l28 4M50 97l-12 36M50 97l30 27"/><rect x="67" y="50" width="24" height="18" rx="3"/></svg></div><div class="pose-label">携带</div></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">关键词卡片</h2>
+        <div class="chips">
+          <div class="chip accent">AI</div>
+          <div class="chip accent">大模型</div>
+          <div class="chip">风口</div>
+          <div class="chip soft">藏进流程</div>
+          <div class="chip">真实问题</div>
+        </div>
+        <h2 class="section-title" style="margin-top:26px">符号系统</h2>
+        <div class="icons">
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="M8 24h28m-8-8 8 8-8 8"/></svg></div>
+          <div class="icon error"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="m17 17 14 14m0-14L17 31"/></svg></div>
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="m11 25 8 8 18-20"/></svg></div>
+          <div class="icon"><svg viewBox="0 0 48 48"><path d="M12 10h24v28H12zM17 18h14M17 25h14M17 32h9"/></svg></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">数字与等级</h2>
+        <div class="levels">
+          <div class="level"><span class="num">1</span>场景 <small>先问清帮谁</small></div>
+          <div class="level"><span class="num">2</span>能力 <small>再确定怎么做</small></div>
+          <div class="level"><span class="num">3</span>体验 <small>最后交付结果</small></div>
+        </div>
+      </section>
+
+      <section class="panel titles">
+        <h2 class="section-title">标题与总结</h2>
+        <div class="kicker">02 → 03 拆解</div>
+        <div class="focus">再按顺序拆开<span>结构</span></div>
+        <div class="hint">下一页：场景 → 能力 → 体验</div>
+        <div class="summary">先有真实问题，再谈模型</div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">组件入场顺序</h2>
+        <div class="motion">
+          <div class="beat"><div class="mini">01</div><p>场次</p></div><span class="arrow">→</span>
+          <div class="beat"><div class="mini">人</div><p>人物</p></div><span class="arrow">→</span>
+          <div class="beat"><div class="mini">词</div><p>关键词</p></div><span class="arrow">→</span>
+          <div class="beat"><div class="mini">结</div><p>总结</p></div>
+        </div>
+        <h2 class="section-title" style="margin-top:24px">统一性规则</h2>
+        <div class="rules">
+          <div class="rule"><b>✓</b><span>同片只用一套人物比例</span></div>
+          <div class="rule"><b>✓</b><span>同类卡片只用一种圆角</span></div>
+          <div class="rule"><b>✓</b><span>重点色占比低于 12%</span></div>
+          <div class="rule"><b>✓</b><span>终帧内容占有效高度 68–82%</span></div>
+        </div>
+      </section>
+    </div>
+
+    <footer><span id="footerName">薄荷剪纸 Mint Paper</span><span>1080 × 1920 · 8px Grid · Safe 64/72/96</span></footer>
+  </div>
+  <script>
+    const system = new URLSearchParams(location.search).get("system") || "A";
+    document.body.className = system;
+    const data = {
+      A: { eyebrow:"SYSTEM A · GENERAL AI EDUCATION", name:"薄荷<em>剪纸</em>", hex:["#FBF8F1","#242525","#72B894","#E35D4B"], footer:"薄荷剪纸 Mint Paper" },
+      B: { eyebrow:"SYSTEM B · CREATOR & TUTORIAL", name:"杏色<em>手账</em>", hex:["#FFF7EA","#30312E","#A9BDA6","#D96E55"], footer:"杏色手账 Apricot Journal" },
+      C: { eyebrow:"SYSTEM C · TECHNICAL EXPLAINER", name:"雾蓝<em>墨线</em>", hex:["#F3F7F6","#24323A","#6198A4","#DD6654"], footer:"雾蓝墨线 Mist Blueprint" }
+    }[system];
+    document.querySelector("#eyebrow").textContent = data.eyebrow;
+    document.querySelector("#name").innerHTML = data.name;
+    data.hex.forEach((v,i)=>document.querySelector(`#h${i+1}`).textContent=v);
+    document.querySelector("#footerName").textContent = data.footer;
+  </script>
+</body>
+</html>
