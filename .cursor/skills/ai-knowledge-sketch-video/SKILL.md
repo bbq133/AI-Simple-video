@@ -1,7 +1,7 @@
 ---
 name: ai-knowledge-sketch-video
 description: Use this skill when the user asks to create or refine a vertical AI/product knowledge explainer in a fresh sketch, paper-cut, doodle, or light educational style; requests 9:16 knowledge cards, narration-synced component reveals, logical card transitions, natural Chinese female voice-over, mobile-friendly previews, or asks to update the workflow after feedback.
-version: 1.1.0
+version: 1.2.0
 ---
 
 # AI Knowledge Sketch Video
@@ -51,7 +51,13 @@ Present the complete scene script and spoken lines. Do not generate or write nar
 
 Generate 2–4 distinct style samples using the same knowledge point. After selection, lock the palette, line, shadow, character, type hierarchy, and spacing.
 
-Before producing the full set, read `references/component-design-systems.md` and select exactly one component system. Record its name and version in `STYLE_LOCK.md`. Do not mix component grammar from different systems in one video.
+Before producing the full set:
+
+1. read `references/component-design-systems.md` and select exactly one component system;
+2. read `references/character-styles.md`, render the five character families in matching poses, and get a separate character-family approval;
+3. record both the component system and character family in `STYLE_LOCK.md`.
+
+Do not mix component grammar or character families in one video. Never default to a bare stick figure after the user has asked for designed characters.
 
 ### Gate 4 — end-frame composition check
 

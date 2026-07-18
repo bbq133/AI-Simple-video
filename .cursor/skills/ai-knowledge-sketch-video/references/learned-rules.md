@@ -11,6 +11,9 @@ Read this file before every production run. Add reusable user feedback here afte
 5. Lock one complete component design system before generating a series.
 6. Do not mix character proportions, line widths, radii, shadows, number styles, or title hierarchy between systems.
 7. Every design system must define characters, symbols, icons, numbers, level cards, titles, summary cards, spacing, and motion behavior.
+8. Character style needs its own approval gate; a good card system does not make an unattractive default stick figure acceptable.
+9. Present at least five distinct character families in the same standard poses before locking one.
+10. After a family is chosen, use it for every scene and derive all new poses from the same proportions.
 
 ## Composition
 

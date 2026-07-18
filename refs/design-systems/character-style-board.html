@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1080,height=1920" />
+  <title>小人物风格选择板</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing:border-box; }
+    html,body { margin:0; width:1080px; height:1920px; overflow:hidden; }
+    body { background:#FBF8F1; color:#242525; font-family:"Noto Sans SC",sans-serif; }
+    .board { position:relative; padding:58px 64px; width:1080px; height:1920px; }
+    .grain {
+      position:absolute; inset:0; opacity:.045; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    header { position:relative; display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+    .eyebrow { color:#72B894; font-size:25px; font-weight:900; letter-spacing:2px; }
+    h1 { margin:6px 0 0; font-size:61px; line-height:1.18; font-weight:900; }
+    h1 span { color:#E35D4B; }
+    .note { max-width:330px; font-size:24px; line-height:1.5; color:#6E706D; text-align:right; }
+    .styles { position:relative; display:grid; gap:18px; }
+    .row {
+      height:304px; display:grid; grid-template-columns:260px 1fr; gap:20px;
+      background:#FFFCF7; border:2px solid rgba(36,37,37,.1); border-radius:28px;
+      box-shadow:0 10px 22px rgba(90,70,40,.09); padding:22px 28px;
+    }
+    .meta { display:flex; flex-direction:column; justify-content:center; }
+    .code { display:inline-block; width:max-content; padding:8px 14px; border-radius:999px; background:#EEF8F2; color:#3D7A5C; font-size:21px; font-weight:900; }
+    h2 { margin:10px 0 5px; font-size:35px; line-height:1.2; }
+    .en { font-size:18px; color:#E35D4B; font-weight:800; }
+    .desc { margin-top:9px; font-size:20px; line-height:1.45; color:#6E706D; }
+    .best { margin-top:10px; font-size:19px; font-weight:800; color:#3D7A5C; }
+    .poses { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; align-items:center; }
+    .pose { height:252px; border-radius:20px; background:#F8F3E9; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .pose svg { width:150px; height:188px; overflow:visible; }
+    .pose-label { margin-top:0; font-size:19px; font-weight:700; color:#6E706D; }
+    .ink { stroke:#242525; }
+    .coral { stroke:#E35D4B; fill:#E35D4B; }
+    .mint { stroke:#72B894; fill:#EEF8F2; }
+    .paper { fill:#FFFCF7; stroke:#242525; }
+    .shadow { filter:drop-shadow(5px 7px 5px rgba(90,70,40,.16)); }
+    footer {
+      position:relative; margin-top:22px; display:flex; justify-content:space-between; align-items:center;
+      padding:16px 22px; border-radius:18px; background:#242525; color:#FFFCF7; font-size:20px; font-weight:700;
+    }
+    footer b { color:#F58B79; }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <div class="grain"></div>
+    <header>
+      <div>
+        <div class="eyebrow">CHARACTER FAMILY · OPTION BOARD</div>
+        <h1>5 种小人物<span>风格</span></h1>
+      </div>
+      <div class="note">其他组件规范保持不变<br/>选定后整条视频只使用一种人物家族</div>
+    </header>
+
+    <section class="styles">
+      <article class="row">
+        <div class="meta">
+          <div class="code">P1 · 推荐</div><h2>圆豆向导</h2><div class="en">Bean Guide</div>
+          <div class="desc">圆润、有设计感，不像火柴人；亲和但不幼稚。</div>
+          <div class="best">适合：通用知识 / 产品科普</div>
+        </div>
+        <div class="poses">
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <ellipse class="paper" stroke-width="4" cx="70" cy="33" rx="27" ry="25"/><circle cx="61" cy="31" r="3" fill="#242525"/><circle cx="78" cy="31" r="3" fill="#242525"/>
+            <rect class="mint" stroke-width="4" x="42" y="62" width="56" height="70" rx="28"/>
+            <path class="ink" stroke-width="13" stroke-linecap="round" fill="none" d="M48 78 23 96M92 78l22 15M57 130l-13 35M84 130l15 34"/>
+            <path class="coral" stroke-width="8" stroke-linecap="round" d="m22 95 12-17"/>
+          </svg><div class="pose-label">思考</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <ellipse class="paper" stroke-width="4" cx="70" cy="33" rx="27" ry="25"/><circle cx="62" cy="31" r="3" fill="#242525"/><circle cx="79" cy="31" r="3" fill="#242525"/>
+            <rect class="mint" stroke-width="4" x="42" y="62" width="56" height="70" rx="28"/>
+            <path class="ink" stroke-width="13" stroke-linecap="round" fill="none" d="M48 78 23 96M92 78l31-29M57 130l-13 35M84 130l15 34"/>
+            <circle class="coral" cx="124" cy="47" r="6"/>
+          </svg><div class="pose-label">指引</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <ellipse class="paper" stroke-width="4" cx="67" cy="33" rx="27" ry="25"/>
+            <rect class="mint" stroke-width="4" x="39" y="62" width="56" height="70" rx="28"/>
+            <path class="ink" stroke-width="13" stroke-linecap="round" fill="none" d="M46 78 24 97M88 78l24 7M54 130l-10 35M80 130l25 26"/>
+            <rect x="98" y="69" width="30" height="25" rx="6" fill="#E35D4B"/>
+          </svg><div class="pose-label">携带</div></div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta">
+          <div class="code">P2</div><h2>软线漫步</h2><div class="en">Softline Walker</div>
+          <div class="desc">连续柔线与姿态表达，像编辑插画，轻盈自然。</div>
+          <div class="best">适合：观点 / 故事 / 人文科技</div>
+        </div>
+        <div class="poses">
+          <div class="pose"><svg viewBox="0 0 140 180" fill="none">
+            <path class="ink" stroke-width="7" stroke-linecap="round" d="M91 33c0 15-11 25-25 25S42 49 42 34 53 8 68 8s23 10 23 25Z"/>
+            <path class="ink" stroke-width="7" stroke-linecap="round" d="M65 59c-18 20-18 52-5 73m0-54c-16 1-28 12-35 28m39-25c17 0 29 9 39 21M60 132l-17 34m17-34 29 28"/>
+            <path class="coral" stroke-width="7" stroke-linecap="round" d="m25 106 13-17"/>
+          </svg><div class="pose-label">思考</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180" fill="none">
+            <path class="ink" stroke-width="7" stroke-linecap="round" d="M91 33c0 15-11 25-25 25S42 49 42 34 53 8 68 8s23 10 23 25Z"/>
+            <path class="ink" stroke-width="7" stroke-linecap="round" d="M65 59c-18 20-18 52-5 73m0-52c-17 7-29 18-35 30m40-31c21-5 35-18 48-37M60 132l-17 34m17-34 29 28"/>
+            <path class="coral" stroke-width="7" stroke-linecap="round" d="m114 41 11-9"/>
+          </svg><div class="pose-label">指引</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180" fill="none">
+            <path class="ink" stroke-width="7" stroke-linecap="round" d="M88 33c0 15-11 25-25 25S39 49 39 34 50 8 65 8s23 10 23 25Z"/>
+            <path class="ink" stroke-width="7" stroke-linecap="round" d="M62 59c-18 20-18 52-5 73m0-52-29 25m35-26 42 5M57 132l-12 34m12-34 35 22"/>
+            <rect x="99" y="70" width="30" height="26" rx="7" fill="#E35D4B"/>
+          </svg><div class="pose-label">携带</div></div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta">
+          <div class="code">P3 · 动效友好</div><h2>剪纸胶囊</h2><div class="en">Paper Capsule</div>
+          <div class="desc">身体与四肢都是独立纸片，最适合分层定格。</div>
+          <div class="best">适合：清新剪纸 / 高频动效</div>
+        </div>
+        <div class="poses">
+          <div class="pose"><svg viewBox="0 0 140 180" class="shadow">
+            <circle class="paper" stroke-width="3" cx="69" cy="32" r="27"/><rect class="mint" stroke-width="3" x="42" y="62" width="55" height="73" rx="27"/>
+            <rect x="20" y="78" width="44" height="18" rx="9" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(-28 20 78)"/>
+            <rect x="88" y="79" width="42" height="18" rx="9" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(22 88 79)"/>
+            <rect x="42" y="129" width="20" height="43" rx="10" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(12 42 129)"/>
+            <rect x="78" y="129" width="20" height="43" rx="10" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(-12 78 129)"/>
+          </svg><div class="pose-label">思考</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180" class="shadow">
+            <circle class="paper" stroke-width="3" cx="65" cy="32" r="27"/><rect class="mint" stroke-width="3" x="38" y="62" width="55" height="73" rx="27"/>
+            <rect x="15" y="77" width="44" height="18" rx="9" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(25 15 77)"/>
+            <rect x="84" y="65" width="58" height="18" rx="9" fill="#E35D4B" transform="rotate(-32 84 65)"/>
+            <rect x="38" y="129" width="20" height="43" rx="10" fill="#FFFCF7" stroke="#242525" stroke-width="3"/>
+            <rect x="75" y="129" width="20" height="43" rx="10" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(-15 75 129)"/>
+          </svg><div class="pose-label">指引</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180" class="shadow">
+            <circle class="paper" stroke-width="3" cx="62" cy="32" r="27"/><rect class="mint" stroke-width="3" x="35" y="62" width="55" height="73" rx="27"/>
+            <rect x="10" y="77" width="44" height="18" rx="9" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(-22 10 77)"/>
+            <rect x="80" y="75" width="45" height="18" rx="9" fill="#FFFCF7" stroke="#242525" stroke-width="3"/>
+            <rect x="103" y="64" width="30" height="30" rx="8" fill="#E35D4B"/>
+            <rect x="36" y="129" width="20" height="43" rx="10" fill="#FFFCF7" stroke="#242525" stroke-width="3"/>
+            <rect x="72" y="129" width="20" height="43" rx="10" fill="#FFFCF7" stroke="#242525" stroke-width="3" transform="rotate(-25 72 129)"/>
+          </svg><div class="pose-label">携带</div></div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta">
+          <div class="code">P4</div><h2>编辑部角色</h2><div class="en">Editorial Figure</div>
+          <div class="desc">有肩颈与服装轮廓，更成熟，适合产品观点。</div>
+          <div class="best">适合：行业分析 / 产品评论</div>
+        </div>
+        <div class="poses">
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <rect class="paper" stroke-width="4" x="43" y="7" width="54" height="52" rx="22"/><circle cx="60" cy="31" r="3" fill="#242525"/><circle cx="80" cy="31" r="3" fill="#242525"/>
+            <path d="M58 63h24l26 72H31z" fill="#EEF8F2" stroke="#242525" stroke-width="4" stroke-linejoin="round"/>
+            <path class="ink" stroke-width="7" stroke-linecap="round" fill="none" d="M45 82 18 108m49-26 36 17M51 135l-14 34m46-34 18 32"/>
+            <path class="coral" stroke-width="6" d="M58 64h24"/>
+          </svg><div class="pose-label">思考</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <rect class="paper" stroke-width="4" x="40" y="7" width="54" height="52" rx="22"/>
+            <path d="M55 63h24l26 72H28z" fill="#EEF8F2" stroke="#242525" stroke-width="4"/>
+            <path class="ink" stroke-width="7" stroke-linecap="round" fill="none" d="M42 82 17 105m48-22 56-37M48 135l-14 34m46-34 18 32"/>
+            <circle class="coral" cx="122" cy="45" r="6"/>
+          </svg><div class="pose-label">指引</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <rect class="paper" stroke-width="4" x="38" y="7" width="54" height="52" rx="22"/>
+            <path d="M53 63h24l26 72H26z" fill="#EEF8F2" stroke="#242525" stroke-width="4"/>
+            <path class="ink" stroke-width="7" stroke-linecap="round" fill="none" d="M40 82 17 105m46-21 40 3M46 135l-14 34m46-34 28 24"/>
+            <rect x="99" y="69" width="33" height="29" rx="5" fill="#E35D4B"/>
+          </svg><div class="pose-label">携带</div></div>
+        </div>
+      </article>
+
+      <article class="row">
+        <div class="meta">
+          <div class="code">P5 · 技术向</div><h2>几何助手</h2><div class="en">Geo Helper</div>
+          <div class="desc">圆点关节与几何躯干，清晰、现代但不机器人。</div>
+          <div class="best">适合：RAG / Agent / 架构</div>
+        </div>
+        <div class="poses">
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <circle class="paper" stroke-width="4" cx="70" cy="32" r="27"/><path d="M48 65h44l13 67H35z" fill="#E4F0F2" stroke="#24323A" stroke-width="4"/>
+            <path stroke="#24323A" stroke-width="12" stroke-linecap="round" d="M43 79 19 105m76-26 24 20M53 132l-13 34m48-34 16 32"/>
+            <circle cx="43" cy="79" r="8" fill="#6198A4"/><circle cx="95" cy="79" r="8" fill="#DD6654"/>
+          </svg><div class="pose-label">思考</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <circle class="paper" stroke-width="4" cx="66" cy="32" r="27"/><path d="M44 65h44l13 67H31z" fill="#E4F0F2" stroke="#24323A" stroke-width="4"/>
+            <path stroke="#24323A" stroke-width="12" stroke-linecap="round" d="M39 79 17 104m74-25 31-32M49 132l-13 34m48-34 16 32"/>
+            <circle cx="39" cy="79" r="8" fill="#6198A4"/><circle cx="122" cy="47" r="8" fill="#DD6654"/>
+          </svg><div class="pose-label">指引</div></div>
+          <div class="pose"><svg viewBox="0 0 140 180">
+            <circle class="paper" stroke-width="4" cx="62" cy="32" r="27"/><path d="M40 65h44l13 67H27z" fill="#E4F0F2" stroke="#24323A" stroke-width="4"/>
+            <path stroke="#24323A" stroke-width="12" stroke-linecap="round" d="M35 79 14 104m74-25 31 8M45 132l-13 34m48-34 26 26"/>
+            <circle cx="35" cy="79" r="8" fill="#6198A4"/><rect x="108" y="72" width="27" height="27" rx="7" fill="#DD6654"/>
+          </svg><div class="pose-label">携带</div></div>
+        </div>
+      </article>
+    </section>
+
+    <footer><span><b>建议先比较：</b>P1 美观亲和 / P3 动效最佳 / P4 最成熟</span><span>同片禁止混用</span></footer>
+  </main>
+</body>
+</html>

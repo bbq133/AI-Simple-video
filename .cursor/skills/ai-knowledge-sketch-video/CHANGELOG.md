@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 — 2026-07-18
+
+- Add five separately selectable character families.
+- Add matching think/point/carry pose comparisons.
+- Require a dedicated character approval gate before full production.
+- Prohibit falling back to bare stick figures after character direction is established.
+- Keep component systems unchanged while allowing a selected character-family override.
+
 ## 1.1.0 — 2026-07-18
 
 - Add three complete component systems: Mint Paper, Apricot Journal, and Mist Blueprint.

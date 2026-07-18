@@ -30,6 +30,10 @@ All values target a 1080×1920 canvas. Scale proportionally for previews.
 
 Use at most three text levels in one frame. Use one highlighted phrase, not many.
 
+### Character-family override
+
+Character design is selected separately from the surrounding component system. Read `character-styles.md` and lock one family (`P1–P5`). The chosen family inherits the system palette but keeps its own body proportions and motion grammar. Its specification overrides the fallback character notes under each system.
+
 ### Shared motion contract
 
 - Scene label enters first.
